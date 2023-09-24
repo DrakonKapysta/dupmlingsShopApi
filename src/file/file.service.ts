@@ -10,6 +10,9 @@ export enum FileType {
 export class FileService {
   createFile(type: FileType, file: Express.Multer.File): string {
     try {
+      if(!file){
+        return null;
+      }
       const fileExtension = file.originalname.split('.')[1];
       const fileName = uuid.v4() + '.' + fileExtension;
       const filePath = path.resolve(__dirname, '..', 'static', type);
