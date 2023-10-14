@@ -16,8 +16,9 @@ export class Dish {
 
   @Prop()
   description: string;
-  @Prop()
-  picture: string;
+
+  @Prop({type:{ data: Buffer, imageType:String }})
+  picture: { data: Buffer, imageType:string };
 }
 
 export const DishSchema = SchemaFactory.createForClass(Dish);
