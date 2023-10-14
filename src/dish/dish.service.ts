@@ -15,8 +15,9 @@ export class DishService {
     dto: CreateDishDto,
     picture: Express.Multer.File,
   ): Promise<Dish> {
-    const filePath = this.fileService.createFile(FileType.IMAGE, picture);
-    const dish = await this.dishModel.create({ ...dto, picture: filePath });
+    //const filePath = this.fileService.createFile(FileType.IMAGE, picture);
+    const pictureData = this.fileService.getBinaryDataWithType(picture);
+    const dish = await this.dishModel.create({ ...dto, picture: pictureData });
     return dish;
   }
   async getAll(): Promise<Dish[]> {
